@@ -12,7 +12,7 @@
     <!--Feather Icons-->
     <script src="https://unpkg.com/feather-icons"></script>
 
-    <title>Sistema de Administración Villa Quietud</title>
+    <title>Villa Quietud</title>
   </head>
   <body>
     <div class="container">
@@ -21,30 +21,28 @@
                 <div class="d-flex justify-content-center">
                     <img src="assets/logo vq.svg" alt="" class="img-fluid">
                 </div>
-                <h1 class="text-center">Villa Quietud System</h1>
-                <p class="text-center">Introduce tu correo electrónico y contraseña</p>
+                <h1 class="text-center">¡Agiliza el pago en caseta!</h1>
+                <p class="text-center">Podra pagar más rápidamente sus cuotas y llevar un registro de todas sus aportaciones mediante el sistema de Villa Quietud</p>
                 <div class="card card-body my-3">
-                    <form action="">
+                    <form role="form" action="<?php echo site_url('Login/signin');?>" method="post">
                         <div class="mb-3">
                             <label for="" class="form-label">Correo Electrónico</label>
-                            <input type="email" name="email" id="" placeholder="nombre@correo.com" class="form-control">
+                            <input type="email" name="userName" id="" placeholder="nombre@correo.com" class="form-control" value="<?php echo set_value('userName'); ?>">
                         </div>
                         <div class="mb-3">
                             <label for="" class="form-label">Contraseña</label>
-                            <input type="password" name="password" id="" placeholder="Introduzca su contraseña" class="form-control">
+                            <input type="password" name="password" id="" placeholder="Introduzca su contraseña" class="form-control" require>
                         </div>
                         <div class="d-grid mb-5">
                             <button type="submit" class="btn btn-primary">Entrar</button>
                         </div>
                         
-                        <a href="forgot-user.html"> <p class="text-center">Olvide mi contraseña</p></a>
+                        <a href="<?php echo site_url('perdi-mis-accesos');?>"> <p class="text-center">Olvide mi contraseña</p></a>
                     </form>
                 </div>
-                <!--<div class="alert alert-danger mb-3 text-center" role="alert">
-                    Su correo o contraseña no coinciden en nuestra base de datos
-                  </div>-->
+                <?php echo form_error('userName', '<div class="alert alert-warning" role="alert">', '</div>'); ?> 
                 <p class="text-center">
-                    Solo un administrador puede dar de baja/alta a un usuario, ponte en contacto con uno para habilitar tu cuenta.
+                    Para registrarse en el sistema acuda a la caseta de cobro ubicada en Hacienda Los Morales esquina Hacienda Texmelucan de Lunes a Viernes de 9am a 6pm, Sabados 9am a 3pm.
                 </p>
             </div>
         </div>
