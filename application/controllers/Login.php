@@ -30,6 +30,15 @@ class Login extends CI_Controller
     public function index()
     {
         $this->load->view('loginView');
+        if($this->session->userdata('logged_in')){ //QUE ES USUARIO
+            //$this->session->set_flashdata('alert_msg', '<br><div class="alert alert-danger text-center">Nivel de Permiso no concedido.</div>');
+            if($this->session->userdata('id_role') == 3){ //QUE ES USUARIO
+                //$this->session->set_flashdata('alert_msg', '<br><div class="alert alert-danger text-center">Nivel de Permiso no concedido.</div>');
+                redirect('Home');
+            }else{
+                redirect('Dashboard');
+            }
+        }
     }
 
     public function signin()

@@ -52,7 +52,7 @@ class Administrador extends CI_Controller
             'cel' => $cel);
         $this->Usuario->add($data);
 
-        echo '<script type="text/javascript"> alert("'.$pass.'"); </script>';
+        //echo '<script type="text/javascript"> alert("'.$pass.'"); </script>';
         //$calixta = new CalixtaAPI();
         //$calixta->enviaMensajeOL($cel, 'Su codigo de registro VQ.com es : ' . $pass, 'SMS', 125);
         //$ret = 1;
