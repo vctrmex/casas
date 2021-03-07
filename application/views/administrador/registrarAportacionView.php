@@ -126,6 +126,9 @@
                         # code...
                         echo 'Diciembre';
                     break;
+                    default:
+                        echo 'Sin Registro';
+                    break;
                 }
                 ?></span></p>
 				<p>Año: <span><?php echo $ultima_aportacion_del_vecino['anio_aportacion']; ?></span></p>

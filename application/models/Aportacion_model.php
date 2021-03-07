@@ -125,6 +125,26 @@ class Aportacion_model extends CI_Model
         }
     }
 
+    public function verificarSiHayViviendaRegistradaByVecino($id_vecino)
+    {
+        try {
+            $this->db->where('id_usuario', $id_vecino);
+            $this->db->from('direccion');
+            return $this->db->count_all_results();
+        } catch (Exception $ex) {
+            throw new Exception('Pescados_model model : Error in get_all_pescados_count function - ' . $ex);
+        }
+    }
+
+    public function getAllViviendas()
+    {
+        try {
+            return $this->db->get('direccion')->result_array();
+        } catch (Exception $ex) {
+            throw new Exception('Aportacion_Model : Error in getAllViviendas function - ' . $ex);
+        }
+    }
+
     // ------------------------------------------------------------------------
 
 }

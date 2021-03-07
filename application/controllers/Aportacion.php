@@ -53,15 +53,30 @@ class Aportacion extends CI_Controller
 
     public function agregarAportacion($idvecinolargo)
     {
-        $idvecinolargo = ltrim($idvecinolargo, '0');
+      $copiaidvecino = $idvecinolargo;
+      $idvecinolargo = ltrim($idvecinolargo, '0');
+      $data['title'] = 'Villa Quietud';
+      $data['id_vecino'] = $idvecinolargo;
 
-        $data['title'] = 'Villa Quietud';
-        $data['id_vecino'] = $idvecinolargo;
+      if($this->Aportacion_model->verificarSiHayViviendaRegistradaByVecino($idvecinolargo) == 0){
+        $this->session->set_flashdata('ultimoid_consultado', $copiaidvecino);
+        $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-info text-center">Debe de agregar primero una dirección para este usuario.</div>');
+        redirect('Aportacion');
+      }else{
+        if($this->Aportacion_model->obtenerLaUltimaAportacionByVecino($idvecinolargo) == null){
+          $data['ultima_aportacion_del_vecino'] = array(
+            'cantidad' => 0,
+            'mes_aportacion' => 13,
+            'anio_aportacion' => 'Sin Registro'
+          );
+        }else{
+          $data['ultima_aportacion_del_vecino'] = $this->Aportacion_model->obtenerLaUltimaAportacionByVecino($idvecinolargo);
+        }
         $data['vecino'] = $this->Aportacion_model->getDatosByIdVecino($idvecinolargo);
         $data['casadelvecino'] = $this->Aportacion_model->getCasaDelVecino($idvecinolargo);
         $data['cantidad_carros_del_vecino'] = $this->Aportacion_model->getCantidadAutosByVecino($idvecinolargo);
-        $data['ultima_aportacion_del_vecino'] = $this->Aportacion_model->obtenerLaUltimaAportacionByVecino($idvecinolargo);
         $this->template->load('homeDashboard', 'administrador/registrarAportacionView', $data);
+      }
     }
 
     public function agregarAportacionByVecino()

@@ -13,7 +13,7 @@
 		<div class="card bordes-verdes">
 			<div class="card-body">
 				<p>Ingresos del dia</p>
-				<span class="fs-3"><b class="moneda">5,000.00</b></span>
+				<span class="fs-3"><b class="moneda"><?php echo number_format($cantidad_ingresos_al_dia,2); ?></b></span>
 			</div>
 		</div>
 	</div>
@@ -21,7 +21,7 @@
 		<div class="card bordes-verdes">
 			<div class="card-body">
 				<p>Ingresos ultimos 15 dias del mes</p>
-				<span class="fs-3"><b class="moneda">15,000.00</b></span>
+				<span class="fs-3"><b class="moneda"><?php echo number_format($cantidad_ingresos_15_dias,2); ?></b></span>
 			</div>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 		<div class="card bordes-verdes">
 			<div class="card-body">
 				<p>Ingresos del dia</p>
-				<span class="fs-3"><b class="moneda">5,000.00</b></span>
+				<span class="fs-3"><b class="moneda"><?php echo number_format($cantidad_ingresos_al_dia,2); ?></b></span>
 			</div>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 		<div class="card bordes-azules">
 			<div class="card-body">
 				<p>Vecinos que aportarón hoy</p>
-				<span class="fs-3"><b>25</b></span>
+				<span class="fs-3"><b><?php echo $total_vecinos_que_aportaron_hoy; ?></b></span>
 			</div>
 		</div>
 	</div>
@@ -51,7 +51,7 @@
 		<div class="card bordes-azules">
 			<div class="card-body">
 				<p>Vecinos que aportarón en los ultimos 15 dias del mes</p>
-				<span class="fs-3"><b>105</b></span>
+				<span class="fs-3"><b><?php echo $total_vecinos_aportaron_15_dias; ?></b></span>
 			</div>
 		</div>
 	</div>
@@ -59,7 +59,7 @@
 		<div class="card bordes-azules">
 			<div class="card-body">
 				<p>Total de vecinos que aportaron en el mes</p>
-				<span class="fs-3"><b>236</b></span>
+				<span class="fs-3"><b><?php echo $total_vecinos_aportaron_al_mes; ?></b></span>
 			</div>
 		</div>
 	</div>
@@ -67,7 +67,7 @@
 		<div class="card bordes-azules">
 			<div class="card-body">
 				<p>Viviendas registradas/de</p>
-				<span class="fs-3"><b>856/1400</b></span>
+				<span class="fs-3"><b><?php echo $total_viviendas; ?>/1400</b></span>
 			</div>
 		</div>
 	</div>
@@ -75,7 +75,7 @@
 		<div class="card bordes-azules">
 			<div class="card-body">
 				<p>Cantidad de vehiculos registrados</p>
-				<span class="fs-3"><b>2250</b></span>
+				<span class="fs-3"><b><?php echo $total_autos; ?></b></span>
 			</div>
 		</div>
 	</div>
