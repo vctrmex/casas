@@ -39,24 +39,9 @@ class Usuario extends CI_Controller
 
     }
 
-    public function login()
+    public function agregarUsuarioAlSistema()
     {
-
-        $this->load->model("Administrador");
-        $nombre = $this->input->post('email');
-        $mail = $this->input->post('password');
-        $r = $this->Administrador->validate($nombre, $mail);
-
-        if ($r > 0) {
-
-            redirect('usuario/dashboard', 'refresh');
-
-        } else {
-
-            $data = array('ban' => 1);
-            redirect('../', 'refresh', $data);
-
-        }
+        # code...
     }
 
 }

@@ -161,6 +161,5 @@
     <!-- Custom js for this page-->
     <script src="<?php echo base_url('resources/'); ?>assets/js/demo_1/dashboard.js"></script>
     <!-- End custom js for this page-->
-    <script src="<?php echo base_url('resources/'); ?>assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
   </body>
 </html>
