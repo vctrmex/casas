@@ -145,6 +145,11 @@ class Aportacion_model extends CI_Model
         }
     }
 
+    public function agregarEgreso($data)
+    {
+        return $this->db->insert('egresos', $data);
+    }
+
     // ------------------------------------------------------------------------
 
 }

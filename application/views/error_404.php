@@ -55,6 +55,11 @@
                         <a class="text-white font-weight-medium" href="<?php echo base_url('Panel') ?>">Volver a mi Inicio</a>
                         <?php
                         break;
+                        default:
+                        ?>
+                        <a class="text-white font-weight-medium" href="<?php echo base_url('') ?>">Volver al inicio</a>
+                        <?php
+                        break;
                   }
                   ?>
                   

@@ -31,10 +31,25 @@ class Estadisticas_model extends CI_Model
         return $ret->total_en_el_dia;
     }
 
+    public function getEgresosDelDiaActual()
+    {
+        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_en_el_dia' FROM `egresos` WHERE fecha_egreso >= '" . date('Y-m-d') . " 00:00:00'");
+        $ret = $sql->row();
+        return $ret->total_en_el_dia;
+    }
+
     public function getIngresosUltimos15Dias()
     {
         $fecha_hace_15_dias = date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days"));
         $sql = $this->db->query("SELECT SUM(cantidad) as 'total_en_el_dia' FROM `aportaciones` WHERE fecharegistro >= '" . $fecha_hace_15_dias . " 00:00:00'");
+        $ret = $sql->row();
+        return $ret->total_en_el_dia;
+    }
+
+    public function getEgresosUltimos15Dias()
+    {
+        $fecha_hace_15_dias = date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days"));
+        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_en_el_dia' FROM `egresos` WHERE fecha_egreso >= '" . $fecha_hace_15_dias . " 00:00:00'");
         $ret = $sql->row();
         return $ret->total_en_el_dia;
     }
@@ -91,6 +106,19 @@ class Estadisticas_model extends CI_Model
       $sql = $this->db->query("SELECT COUNT(*) as 'total_autos' FROM `automobiles`");
       $ret = $sql->row();
       return $ret->total_autos;
+    }
+
+    public function traerIngresosPorParametros($anio, $mes)
+    {
+        $sql = "SELECT * FROM `aportaciones` WHERE MONTH(fecharegistro) = $mes and YEAR(fecharegistro) = $anio";
+        if($anio == 'Seleccione Año' || $mes == 'Seleccione Mes'){
+            return null;
+        }else{
+            
+            $query = $this->db->query($sql);
+            return $query->result_array();
+        }
+        
     }
 
     // ------------------------------------------------------------------------

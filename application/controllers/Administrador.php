@@ -34,47 +34,4 @@ class Administrador extends CI_Controller
         $this->load->view('administrador/alta.php');
     }
 
-    public function add()
-    {
-        include APPPATH . 'third_party/CalixtaAPI.php';
-        $this->load->model("Usuario");
-        $nombre = $this->input->post('nombre');
-        $mail = $this->input->post('mail');
-        $pass = $this->getpass();
-        $cel = $this->input->post('cel');
-        $id_rol = $this->input->post('id_role');
-
-        
-        $data = array('nombre' => $nombre,
-            'mail' => $mail,
-            'password' => md5($pass),
-            'id_role' => $id_rol,
-            'cel' => $cel);
-        $this->Usuario->add($data);
-
-        //echo '<script type="text/javascript"> alert("'.$pass.'"); </script>';
-        //$calixta = new CalixtaAPI();
-        //$calixta->enviaMensajeOL($cel, 'Su codigo de registro VQ.com es : ' . $pass, 'SMS', 125);
-        //$ret = 1;
-        redirect('administrador/dashboard', 'refresh');
-
-        //$this->load->view('administrador/alta.php');
-    }
-
-    public function getpass()
-    {
-
-        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
-        $password = "";
-        //Reconstruimos la contraseña segun la longitud que se quiera
-        for ($i = 0; $i < 8; $i++) {
-            //obtenemos un caracter aleatorio escogido de la cadena de caracteres
-            $password .= substr($str, rand(0, 62), 1);
-
-        }
-
-        return $password;
-
-    }
-
 }

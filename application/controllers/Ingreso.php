@@ -24,12 +24,26 @@ class Ingreso extends CI_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->load->model('Estadisticas_model');
+        $this->load->model('Usuario_model');
+        $this->load->model('Aportacion_model');
     }
 
     public function index()
     {
       $data['title'] = 'Villa Quietud';
+      $data['cantidad_ingresos_al_dia'] = $this->Estadisticas_model->getIngresosDelDiaActual();
+      $data['cantidad_ingresos_15_dias'] = $this->Estadisticas_model->getIngresosUltimos15Dias();
+      $data['total_vecinos_aportaron_al_mes'] = $this->Estadisticas_model->getTotalVecinosQueAportaronAlMes();
+      $data['usuarios'] = $this->Usuario_model->obtenerTodosLosUsuarios();
+      $data['ubicaciones'] = $this->Usuario_model->obtenerTodasLasUbicaciones();
+      $data['aportaciones'] = $this->Aportacion_model->getAllAportaciones();
       $this->template->load('homeDashboard', 'administrador/ingresosView', $data);
+    }
+
+    public function solicitarEstadisticaIngresos()
+    {
+      echo json_encode($this->Estadisticas_model->traerIngresosPorParametros($this->input->post("anio"),$this->input->post("mes")));
     }
 
 }

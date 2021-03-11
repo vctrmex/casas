@@ -25,14 +25,14 @@ class Vivienda extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Aportacion_model');
-        $this->load->model('usuario');
+        $this->load->model('Usuario_model');
     }
 
     public function index()
     {
         $data['title'] = 'Villa Quietud';
         $data['viviendas'] = $this->Aportacion_model->getAllViviendas();
-        $data['usuarios'] = $this->usuario->obtenerTodosLosUsuarios();
+        $data['usuarios'] = $this->Usuario_model->obtenerTodosLosUsuarios();
         $this->template->load('homeDashboard', 'administrador/verViviendas', $data);
     }
 

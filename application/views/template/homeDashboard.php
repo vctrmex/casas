@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="<?php echo base_url('resources/'); ?>assets/css/demo_1/style.css">
     <!-- End Layout styles -->
     <link rel="shortcut icon" href="<?php echo base_url('resources/'); ?>assets/images/favicon.ico" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
   </head>
   <body>
     <div class="container-scroller">

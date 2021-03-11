@@ -2,7 +2,7 @@
     exit('no existe pagina');
 }
 
-class Usuario extends CI_model
+class Usuario_model extends CI_model
 {
 
     public function __construct()
@@ -35,6 +35,15 @@ class Usuario extends CI_model
         }
     }
 
+    public function obtenerTodosLosRoles()
+    {
+        try {
+            return $this->db->get('roles')->result_array();
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in obtenerTodosLosRoles function - ' . $ex);
+        }
+    }
+
     public function obtenerTodasLasUbicaciones()
     {
         try {
@@ -42,5 +51,21 @@ class Usuario extends CI_model
         } catch (Exception $ex) {
             throw new Exception('Usuario model : Error in obtenerTodasLasUbicaciones function - ' . $ex);
         }
+    }
+
+    public function getpass()
+    {
+
+        $str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890";
+        $password = "";
+        //Reconstruimos la contraseña segun la longitud que se quiera
+        for ($i = 0; $i < 8; $i++) {
+            //obtenemos un caracter aleatorio escogido de la cadena de caracteres
+            $password .= substr($str, rand(0, 62), 1);
+
+        }
+
+        return $password;
+
     }
 }
