@@ -33,6 +33,7 @@ class Egreso extends CI_Controller
         $data['title'] = 'Villa Quietud';
         $data['egreso_al_dia'] = $this->Estadisticas_model->getEgresosDelDiaActual();
         $data['egreso_15_dias'] = $this->Estadisticas_model->getEgresosUltimos15Dias();
+        $data['egresos'] = $this->Aportacion_model->getEgresosActivos();
         $this->template->load('homeDashboard', 'administrador/egresosView', $data);
     }
 
@@ -70,6 +71,22 @@ class Egreso extends CI_Controller
         } catch (Exception $ex) {
             throw new Exception('Egresos Controller : Error in add function - ' . $ex);
         }
+    }
+
+    public function eliminarEgreso($id_egreso)
+    {
+        if($this->Aportacion_model->cambiarAEliminadoEgreso($id_egreso)){
+            $this->session->set_flashdata('alert_msg', '<div class="alert alert-success text-center">Egreso Eliminado</div>');
+            redirect('Egreso');
+        }else{
+            $this->session->set_flashdata('alert_msg', '<div class="alert alert-danger text-center">Egreso No Eliminado</div>');
+            redirect('Egreso');
+        }
+    }
+
+    public function solicitarEstadisticasEgreso()
+    {
+      echo json_encode($this->Estadisticas_model->traerEgresosPorParametros($this->input->post("anio"),$this->input->post("mes")));
     }
 }
 

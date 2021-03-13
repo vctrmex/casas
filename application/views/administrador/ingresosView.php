@@ -185,7 +185,7 @@
 	</div>
 </div>
 
-	<!--Pagination-->
+	<!--Pagination
 	<div class="row mb-5">
 		<div class="col-12 d-flex justify-content-center align-items-center">
 			<nav aria-label="Page navigation example">
@@ -198,7 +198,7 @@
 				</ul>
 			</nav>
 		</div>
-	</div>
+	</div>-->
 
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -42,7 +42,7 @@
 	<div class="col-12">
 		<h4>Egreso Mensual</h4>
 		<div class="d-flex">
-			<select class="form-control me-3" aria-label="Default select example">
+			<select id="select_anio" class="form-control me-3" aria-label="Default select example">
 				<option selected>Seleccione Año</option>
 				<option value="2021">2021</option>
 				<option value="2020">2020</option>
@@ -50,7 +50,7 @@
 				<option value="2018">2018</option>
 				<option value="2017">2017</option>
 			</select>
-			<select class="form-control" aria-label="Default select example">
+			<select id="select_mes" class="form-control" aria-label="Default select example">
 				<option selected>Seleccione Mes</option>
 				<option value="1">Enero</option>
 				<option value="2">Febrero</option>
@@ -102,122 +102,192 @@
 						</tr>
 					</thead>
 					<tbody>
+					<?php foreach ($egresos as $egreso) { ?>
 						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
+							<td class="numeral"><?php echo sprintf('%06d', $egreso['id_egreso']); ?></td>
+							<td><?php echo $egreso['concepto_egreso']; ?></td>
+							<td class="moneda">$<?php echo number_format($egreso['cantidad_egreso'],2); ?></td>
+							<td><?php echo $egreso['fecha_egreso']; ?></td>
+							<td><?php echo $egreso['nota_egreso']; ?></td>
+							<td><a href="<?php echo base_url('Egreso/editarEgreso/').$egreso['id_egreso'] ?>"><i data-feather="edit"></i> Editar</a></td>
+							<td><a href="<?php echo base_url('Egreso/eliminarEgreso/').$egreso['id_egreso'] ?>"><i data-feather="trash"></i> Borrar</a></td>
 						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
-						<tr>
-							<td class="numeral">02166</td>
-							<td>Pago Seguridad</td>
-							<td class="moneda">40,000.00</td>
-							<td>15/09/2019</td>
-							<td>5487778</td>
-							<td><a href="editar-egreso.html"><i data-feather="edit"></i> Editar</a></td>
-							<td><a href="#"><i data-feather="trash"></i> Borrar</a></td>
-						</tr>
+					<?php } ?>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type='text/javascript'>
 
-<!--Pagination-->
+	$('#select_anio').change(function(){
+    var sanio = $('#select_anio').val();
+	var smes = $('#select_mes').val();
+    $.ajax({
+     url:'<?=base_url()?>Egreso/solicitarEstadisticasEgreso',
+     method: 'post',
+     data: {anio: sanio, mes: smes},
+     dataType: 'json',
+     success: function(response){
+
+	   console.log(response);
+
+	   if(response != null){
+		   procesarDatos(response);
+	   }
+     }
+   });
+  });
+
+  $('#select_mes').change(function(){
+    var sanio = $('#select_anio').val();
+	var smes = $('#select_mes').val();
+    $.ajax({
+     url:'<?=base_url()?>Egreso/solicitarEstadisticasEgreso',
+     method: 'post',
+     data: {anio: sanio, mes: smes},
+     dataType: 'json',
+     success: function(response){
+
+	   console.log(response);
+	   if(response != null){
+		   procesarDatos(response);
+	   }
+     }
+   });
+  });
+ </script>
+
+ <script>
+ 
+ function procesarDatos(datosDeBD) {
+	 var copiaDeSeguridad = datosDeBD;
+	 var datosOficiales = datosDeBD;
+	 var labelsDeDias = '';
+	 var fechaDistinta = '';
+	 var valoresDeLabels = '';
+	 var sumaModular = 0;
+	 var otrosLabels = '';
+
+	 datosOficiales.forEach(function(elemento, indice, array) {
+
+    	console.log(elemento, indice);
+
+		var fechaAEvaluar = dejarUnicamenteFecha(elemento.fecha_egreso);
+		var fechaDespues = ((array.length - 1 === indice)? "0-0-0" : dejarUnicamenteFecha(array[indice+1].fecha_egreso));
+
+		if(fechaAEvaluar != fechaDistinta){
+			fechaDistinta = fechaAEvaluar;
+
+			labelsDeDias += fechaAEvaluar+",";
+			otrosLabels += "'"+fechaAEvaluar+"'"+",";
+		}
+	 })
+
+	 var copyLabelsDeDias = labelsDeDias;
+
+	 var lb = copyLabelsDeDias.split(',').filter(function(el) {return el.length != 0});
+
+	 lb.forEach(function(elemento, indice, array){
+		console.log(elemento, indice);
+
+		//var fechaDeLosLabels = dejarUnicamenteFecha(elemento.fecharegistro);
+
+		datosOficiales.forEach(function(element, index, arr) {
+			var fechaDeLaEvaluacion = dejarUnicamenteFecha(element.fecha_egreso);
+
+			if(fechaDeLaEvaluacion == elemento){
+				sumaModular += parseInt(element.cantidad_egreso, 10);
+			}
+		})
+
+		valoresDeLabels+= sumaModular+',';
+		sumaModular = 0;
+
+	 })
+
+	 //console.log(labelsDeDias);
+	 //console.log(valoresDeLabels);
+
+	 cargarGraficoIngreso(labelsDeDias,valoresDeLabels);
+ }
+
+ function dejarUnicamenteFecha(textoFechaCompleta){
+
+	var fechaADevolver = '';
+	var fh = textoFechaCompleta.split('-');
+
+	fechaADevolver += fh[0]+'-';
+
+	fechaADevolver += fh[1]+'-';
+
+	var ultimaSeccion = fh[2].split(' ');
+
+	fechaADevolver += ultimaSeccion[0];
+
+	return fechaADevolver;
+ }
+
+ function cargarGraficoIngreso(labelss, valores) {
+	 /* chart.js chart examples */
+
+	 var nuevosLabels = labelss.split(',').filter(function(el) {return el.length != 0});
+	 var nuevosValores = valores.split(',').filter(function(el) {return el.length != 0});
+
+	 //console.log(nuevosLabels);
+
+	 //console.log(nuevosValores);
+
+// chart colors
+var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
+
+/* large line chart */
+var chLine = document.getElementById("chLine");
+var chartData = {
+  labels: nuevosLabels,
+  datasets: [{
+    data: nuevosValores,
+    backgroundColor: 'transparent',
+    borderColor: colors[1],
+    borderWidth: 4,
+    pointBackgroundColor: colors[1]
+  },
+ /* Segunda linea de datos
+ {
+    data: [639, 465, 493, 478],
+    backgroundColor: colors[3],
+    borderColor: colors[1],
+    borderWidth: 4,
+    pointBackgroundColor: colors[1]
+  }*/
+]
+};
+
+if (chLine) {
+  new Chart(chLine, {
+  type: 'line',
+  data: chartData,
+  options: {
+    scales: {
+      yAxes: [{
+        ticks: {
+          beginAtZero: false
+        }
+      }]
+    },
+    legend: {
+      display: false
+    }
+  }
+  });
+}
+ }
+ 
+
+</script>
+<!--Pagination
 <div class="row mb-5">
 	<div class="col-12 d-flex justify-content-center align-items-center">
 		<nav aria-label="Page navigation example">
@@ -231,3 +301,4 @@
 		</nav>
 	</div>
 </div>
+-->

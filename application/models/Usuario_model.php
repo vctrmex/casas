@@ -13,6 +13,8 @@ class Usuario_model extends CI_model
     public function add($data = null)
     {
         $this->db->insert('usuario', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
     }
 
     public function validate($user = null, $pass = null)
@@ -51,6 +53,11 @@ class Usuario_model extends CI_model
         } catch (Exception $ex) {
             throw new Exception('Usuario model : Error in obtenerTodasLasUbicaciones function - ' . $ex);
         }
+    }
+
+    public function agregarDireccionWithUser($data)
+    {
+        return $this->db->insert('direccion', $data);
     }
 
     public function getpass()

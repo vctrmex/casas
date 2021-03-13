@@ -33,7 +33,7 @@ class Estadisticas_model extends CI_Model
 
     public function getEgresosDelDiaActual()
     {
-        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_en_el_dia' FROM `egresos` WHERE fecha_egreso >= '" . date('Y-m-d') . " 00:00:00'");
+        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_en_el_dia' FROM `egresos` WHERE fecha_egreso >= '" . date('Y-m-d') . " 00:00:00' AND status_egreso = 1");
         $ret = $sql->row();
         return $ret->total_en_el_dia;
     }
@@ -49,7 +49,7 @@ class Estadisticas_model extends CI_Model
     public function getEgresosUltimos15Dias()
     {
         $fecha_hace_15_dias = date("Y-m-d", strtotime(date('Y-m-d') . "- 15 days"));
-        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_en_el_dia' FROM `egresos` WHERE fecha_egreso >= '" . $fecha_hace_15_dias . " 00:00:00'");
+        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_en_el_dia' FROM `egresos` WHERE fecha_egreso >= '" . $fecha_hace_15_dias . " 00:00:00' AND status_egreso = 1");
         $ret = $sql->row();
         return $ret->total_en_el_dia;
     }
@@ -117,8 +117,18 @@ class Estadisticas_model extends CI_Model
             
             $query = $this->db->query($sql);
             return $query->result_array();
-        }
-        
+        } 
+    }
+
+    public function traerEgresosPorParametros($anio, $mes)
+    {
+        $sql = "SELECT * FROM `egresos` WHERE MONTH(fecha_egreso) = $mes and YEAR(fecha_egreso) = $anio AND status_egreso = 1";
+        if($anio == 'Seleccione Año' || $mes == 'Seleccione Mes'){
+            return null;
+        }else{
+            $query = $this->db->query($sql);
+            return $query->result_array();
+        } 
     }
 
     // ------------------------------------------------------------------------

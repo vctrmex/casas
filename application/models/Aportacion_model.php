@@ -150,6 +150,20 @@ class Aportacion_model extends CI_Model
         return $this->db->insert('egresos', $data);
     }
 
+    public function getEgresosActivos()
+    {
+        return $this->db->get_where('egresos', array('status_egreso' => 1))->result_array();
+    }
+
+    public function cambiarAEliminadoEgreso($id_egreso)
+    {
+        $data = array(
+            'status_egreso' => 2
+        );
+        $this->db->where('id_egreso', $id_egreso);
+        return $this->db->update('egresos', $data);
+    }
+
     // ------------------------------------------------------------------------
 
 }

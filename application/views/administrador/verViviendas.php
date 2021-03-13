@@ -4,12 +4,6 @@
 	</div>
 </div>
 
-<div class="row mb-3">
-	<div class="col-12">
-        <button type="submit" class="btn btn-primary">Agregar Vivienda</button>
-	</div>
-</div>
-
 <div class="row">
     <div class="col-md-12">
         <?php echo $this->session->flashdata('alert_msg'); ?>

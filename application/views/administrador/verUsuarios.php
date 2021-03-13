@@ -39,7 +39,22 @@
                                 <td>#<?php echo sprintf('%06d', $usuario['id']); ?></td>
                                 <td><?php echo $usuario['nombre']; ?></td>
                                 <td><?php echo $usuario['mail']; ?></td>
-                                <td><?php echo $usuario['id_role']; ?></td>
+                                <td><?php 
+                                
+                                switch ($usuario['id_role']) {
+                                    case '1':
+                                      # code...
+                                      echo 'Cobranza';
+                                      break;
+                                    case '2':
+                                    # code...
+                                    echo 'Administrador';
+                                    break;
+                                    case '3':
+                                    # code...
+                                    echo 'Usuario';
+                                    break;
+                              }?></td>
                                 <td> <?php echo $usuario['cel']; ?></td>
                             </tr>
                             <?php }?>

@@ -29,9 +29,9 @@
       <!-- partial:partials/_navbar.html -->
       <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-          <a class="navbar-brand brand-logo" href="index.html">
+          <a class="navbar-brand brand-logo" href="<?php echo base_url('Dashboard'); ?>">
             <h2><?php echo $title; ?></h2> </a>
-          <a class="navbar-brand brand-logo-mini" href="index.html">
+          <a class="navbar-brand brand-logo-mini" href="<?php echo base_url('Dashboard'); ?>">
             <h2><?php echo 'VQ'; ?></h2> </a>
         </div>
         <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -91,13 +91,14 @@
               </a>
             </li>
 
+            <?php if($this->session->userdata('id_role') == 2){ ?>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('Vivienda'); ?>">
                 <i class="menu-icon typcn typcn-th-large-outline"></i>
                 <span class="menu-title">Viviendas</span>
               </a>
             </li>
-
+            
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('Ingreso'); ?>">
                 <i class="menu-icon typcn typcn-bell"></i>
@@ -111,7 +112,7 @@
                 <span class="menu-title">Egresos</span>
               </a>
             </li>
-
+<?php } ?>
             <li class="nav-item">
               <a class="nav-link" href="<?php echo base_url('Usuario'); ?>">
                 <i class="menu-icon typcn typcn-user-outline"></i>
