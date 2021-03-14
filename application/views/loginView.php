@@ -17,7 +17,9 @@
   <body>
     <div class="container">
         <div class="row d-flex justify-content-center">
+        
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
+            <br><br>
                 <div class="d-flex justify-content-center">
                     <img src="assets/logo vq.svg" alt="" class="img-fluid">
                 </div>

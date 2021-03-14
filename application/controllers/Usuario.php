@@ -68,7 +68,7 @@ class Usuario extends CI_Controller
 
             $id_usuario = $this->Usuario_model->add($data);
 
-            //echo '<script type="text/javascript"> alert("' . $pass . '"); </script>';
+            echo '<script type="text/javascript"> alert("' . $pass . '"); </script>';
             //$calixta = new CalixtaAPI();
             //$calixta->enviaMensajeOL($cel, 'Su codigo de registro VQ.com es : ' . $pass, 'SMS', 125);
             //$ret = 1;
