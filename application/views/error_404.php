@@ -52,7 +52,7 @@
                         case '3':
                         # code...
                         ?>
-                        <a class="text-white font-weight-medium" href="<?php echo base_url('Panel') ?>">Volver a mi Inicio</a>
+                        <a class="text-white font-weight-medium" href="<?php echo base_url('Home') ?>">Volver a mi Inicio</a>
                         <?php
                         break;
                         default:

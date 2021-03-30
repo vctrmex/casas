@@ -34,6 +34,7 @@ class Aportacion extends CI_Controller
         $data['title'] = 'Villa Quietud';
         $data['usuarios'] = $this->Usuario_model->obtenerTodosLosUsuarios();
         $data['ubicaciones'] = $this->Usuario_model->obtenerTodasLasUbicaciones();
+        //$data['ubicaciones'] = $this->Usuario_model->obtenerTodasLasUbicacionesDireccciones();
         $data['aportaciones'] = $this->Aportacion_model->getAllAportaciones();
         $this->template->load('homeDashboard', 'administrador/aportacionesView', $data);
     }
@@ -73,7 +74,13 @@ class Aportacion extends CI_Controller
           $data['ultima_aportacion_del_vecino'] = $this->Aportacion_model->obtenerLaUltimaAportacionByVecino($idvecinolargo);
         }
         $data['vecino'] = $this->Aportacion_model->getDatosByIdVecino($idvecinolargo);
-        $data['casadelvecino'] = $this->Aportacion_model->getCasaDelVecino($idvecinolargo);
+
+        $direcciondedb = $this->Aportacion_model->getCasaDelVecino($idvecinolargo);
+
+        $direccionsola = $this->Aportacion_model->traerDireccionSola($direcciondedb['calle']);
+
+        $data['casadelvecino'] = array('calle' => $direccionsola.', '.$direcciondedb['colonia'].', '.$direcciondedb['alcaldia'].', '.$direcciondedb['ciudad']);
+
         $data['cantidad_carros_del_vecino'] = $this->Aportacion_model->getCantidadAutosByVecino($idvecinolargo);
         $this->template->load('homeDashboard', 'administrador/registrarAportacionView', $data);
       }

@@ -17,6 +17,19 @@ class Usuario_model extends CI_model
         return $insert_id;
     }
 
+    public function actualizarUsuario($data,$id_cliente)
+    {
+        $this->db->where('id', $id_cliente);
+        return $this->db->update('usuario', $data);
+    }
+
+    public function agregarDireccion($params)
+    {
+        $this->db->insert('direcciones', $params);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+
     public function validate($user = null, $pass = null)
     {
 
@@ -28,10 +41,36 @@ class Usuario_model extends CI_model
 
     }
 
+    public function traerCochesDelUsuario($id_vecino)
+    {
+        try {
+            $this->db->where('id_usuario', $id_vecino);
+            return $this->db->get('automobiles')->result_array();
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in obtenerTodosLosUsuarios function - ' . $ex);
+        }
+    }
+
+    public function agregarNuevoCoche($params)
+    {
+        $this->db->insert('automobiles', $params);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+
     public function obtenerTodosLosUsuarios()
     {
         try {
             return $this->db->get('usuario')->result_array();
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in obtenerTodosLosUsuarios function - ' . $ex);
+        }
+    }
+
+    public function obtenerTodosLosUsuariosUsers()
+    {
+        try {
+            return $this->db->get_where('usuario', array('id_role' => 3))->result_array();
         } catch (Exception $ex) {
             throw new Exception('Usuario model : Error in obtenerTodosLosUsuarios function - ' . $ex);
         }
@@ -50,6 +89,15 @@ class Usuario_model extends CI_model
     {
         try {
             return $this->db->get('direccion')->result_array();
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in obtenerTodasLasUbicaciones function - ' . $ex);
+        }
+    }
+
+    public function obtenerTodasLasUbicacionesDireccciones()
+    {
+        try {
+            return $this->db->get('direcciones')->result_array();
         } catch (Exception $ex) {
             throw new Exception('Usuario model : Error in obtenerTodasLasUbicaciones function - ' . $ex);
         }

@@ -7,7 +7,7 @@ define('PORT',80);
 define('TIMEOUT',40);
 define('CLIENTE',47942);
 //define('PASSWORD','a96d0e1ffc3a0461a70ca5cc328b3bcafa118163e54bc6797c7f465dbc90662c');
-define('PASSWORD','f558fc63a34656c6b74e204300ad066f6bc33858eba4538dddcea0f819fd05b0');
+define('PASSWORD','D-n03840');
 define('USER','vctr.31@hotmail.com');
 
 function checkValidSession(){

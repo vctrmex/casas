@@ -38,6 +38,24 @@ class Aportacion_model extends CI_Model
         }
     }
 
+    public function getAllAportacionesByVecino($id_vecino)
+    {
+        try {
+            return $this->db->get_where('aportaciones', array('id_usuario' => $id_vecino))->result_array();
+        } catch (Exception $ex) {
+            throw new Exception('Aportacion_Model : Error in getDatosByIdVecino function - ' . $ex);
+        }
+    }
+
+    public function getAllOtrasAportaciones($id_vecino)
+    {
+        try {
+            return $this->db->get_where('otraaportacion', array('id_usuario' => $id_vecino))->result_array();
+        } catch (Exception $ex) {
+            throw new Exception('Aportacion_Model : Error in getDatosByIdVecino function - ' . $ex);
+        }
+    }
+
     public function buscarVecinoByWhere($idvecino)
     {
         $this->db->where('id', $idvecino);
@@ -69,6 +87,20 @@ class Aportacion_model extends CI_Model
         } catch (Exception $ex) {
             throw new Exception('Aportacion_Model Model : Error in getCasaDelVecino function - ' . $ex);
         }
+    }
+
+    public function traerDireccionSola($id_vecino)
+    {
+        $sql = $this->db->query("SELECT * FROM `direcciones` WHERE id_direcciones = ".$id_vecino);
+        $ret = $sql->row();
+        return $ret->nombre_direcciones.', '.$ret->numeroint_direcciones.', '.$ret->numeroext_direcciones.', '.$ret->chat_direccion;
+    }
+
+    public function traerChat($id_vecino)
+    {
+        $sql = $this->db->query("SELECT * FROM `direcciones` WHERE id_direcciones = ".$id_vecino);
+        $ret = $sql->row();
+        return $ret->chat_direccion;
     }
 
     public function getCantidadAutosByVecino($id_vecino)
@@ -158,7 +190,7 @@ class Aportacion_model extends CI_Model
     public function cambiarAEliminadoEgreso($id_egreso)
     {
         $data = array(
-            'status_egreso' => 2
+            'status_egreso' => 2,
         );
         $this->db->where('id_egreso', $id_egreso);
         return $this->db->update('egresos', $data);

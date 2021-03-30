@@ -89,7 +89,7 @@
 		</div>
 		<div class="card mt-4">
 			<div class="card-body">
-				<table class="table text-center">
+				<table class="table text-center" id="tablajaja">
 					<thead>
 						<tr>
 							<th>Egreso #</th>
@@ -109,7 +109,7 @@
 							<td class="moneda">$<?php echo number_format($egreso['cantidad_egreso'],2); ?></td>
 							<td><?php echo $egreso['fecha_egreso']; ?></td>
 							<td><?php echo $egreso['nota_egreso']; ?></td>
-							<td><a href="<?php echo base_url('Egreso/editarEgreso/').$egreso['id_egreso'] ?>"><i data-feather="edit"></i> Editar</a></td>
+							
 							<td><a href="<?php echo base_url('Egreso/eliminarEgreso/').$egreso['id_egreso'] ?>"><i data-feather="trash"></i> Borrar</a></td>
 						</tr>
 					<?php } ?>
@@ -119,7 +119,24 @@
 		</div>
 	</div>
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+$('#tablajaja').dataTable({
+    "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": true,
+    "bInfo": false,
+    "bAutoWidth": false,
+    "language": {
+            "lengthMenu": "Mostrando _MENU_ records per page",
+            "zeroRecords": "No hay coincidencias",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "No hay aportaciones registradas",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search":"Buscar"
+    }});
+});
+</script>
 <script type='text/javascript'>
 
 	$('#select_anio').change(function(){

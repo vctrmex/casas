@@ -31,6 +31,21 @@
 									aria-describedby="emailHelp" placeholder="nombre@correo.com" name="mail" value="<?php echo set_value('mail'); ?>">
                                     <?php echo form_error('mail', '<div class="alert alert-danger mt-1">', '</div>'); ?>
 							</div>
+
+							<div class="mb-3">
+								<label for="exampleInputEmail22" class="form-label">Contacto Secundario</label>
+								<input type="text" class="form-control" id="exampleInputEmail22"
+									aria-describedby="emailHelp" placeholder="Juan Perez" name='nombre2' value="<?php echo set_value('nombre2'); ?>">
+                                <?php echo form_error('nombre2', '<div class="alert alert-danger mt-1">', '</div>'); ?>
+							</div>
+							<div class="mb-3">
+								<label for="exampleInputEmail33" class="form-label">Numero Celular Contacto Secundario</label>
+								<input type="text" class="form-control" id="exampleInputEmail33"
+									aria-describedby="emailHelp" placeholder="10 digitos" name="cel2" value="<?php echo set_value('cel2'); ?>">
+                                    <?php echo form_error('cel2', '<div class="alert alert-danger mt-1">', '</div>'); ?>
+							</div>
+
+
 							<div class="mb-3">
 								<label for="exampleInputEmail1" class="form-label">Selecciona un Rol</label>
 								<select class="form-control" aria-label="Default select example" name='id_role'>
@@ -45,7 +60,7 @@
 							</div>
 							<div class="d-grid">
 								<button type="submit" class="btn btn-primary">Guardar</button>
-								<a href="user.html" class="btn btn-danger">Cancelar</a>
+								<a href="<?php echo base_url('Usuario'); ?>" class="btn btn-danger">Cancelar</a>
 							</div>
 						</form>
 					</div>

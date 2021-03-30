@@ -104,7 +104,9 @@
                                 <td>
                                 <?php foreach ($ubicaciones as $ubicacion) {
                                     if($ubicacion['id_usuario'] == $aportacion['id_usuario']){
-                                        echo $ubicacion['calle'];
+                                        ?>
+                                        <a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $aportacion['id_usuario'])); ?>"><?php echo $ubicacion['calle']; ?></a>
+                                <?php
                                     }
                                 } ?>
                                 </td>
@@ -201,7 +203,24 @@
 	</div>-->
 
 </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+$(document).ready(function() {
+$('#tablajaja').dataTable({
+    "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": true,
+    "bInfo": false,
+    "bAutoWidth": false,
+    "language": {
+            "lengthMenu": "Mostrando _MENU_ records per page",
+            "zeroRecords": "No hay coincidencias",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "No hay aportaciones registradas",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search":"Buscar"
+    }});
+});
+</script>
 <script type='text/javascript'>
 
 	$('#select_anio').change(function(){

@@ -19,9 +19,8 @@
         <div class="row d-flex justify-content-center">
         
             <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-sm-12">
-            <br><br>
                 <div class="d-flex justify-content-center">
-                    <img src="assets/logo vq.svg" alt="" class="img-fluid">
+                    <img src="<?php echo base_url('resources/assets/images/logooficial.svg') ?>" alt="" class="img-fluid" width="200px">
                 </div>
                 <h1 class="text-center">¡Agiliza el pago en caseta!</h1>
                 <p class="text-center">Podra pagar más rápidamente sus cuotas y llevar un registro de todas sus aportaciones mediante el sistema de Villa Quietud</p>

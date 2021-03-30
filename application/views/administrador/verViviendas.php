@@ -22,11 +22,7 @@
                                 <th># Vivienda</th>
                                 <th>Vecino</th>
                                 <th>Dirección</th>
-                                <th>Numero</th>
-                                <th>Piso</th>
-                                <th>Colonia</th>
-                                <th>Alcaldia</th>
-                                <th>Ciudad</th>
+                                <th>No. Ext</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -43,12 +39,8 @@
                                 } ?>
                                 
                                 </td>
-                                <td><?php echo $vivienda['calle']; ?></td>
-                                <td>#<?php echo $vivienda['numeroext']; ?></td>
+                                <td><a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $vivienda['id_usuario'])); ?>"><?php echo $vivienda['calle']; ?></a></td>
                                 <td> #<?php echo $vivienda['piso']; ?></td>
-                                <td> <?php echo $vivienda['colonia']; ?></td>
-                                <td> <?php echo $vivienda['alcaldia']; ?></td>
-                                <td> <?php echo $vivienda['ciudad']; ?></td>
                             </tr>
                             <?php }?>
                         </tbody>
@@ -60,3 +52,22 @@
 		</div>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+$('#tablajaja').dataTable({
+    "bPaginate": false,
+    "bLengthChange": false,
+    "bFilter": true,
+    "bInfo": false,
+    "bAutoWidth": false,
+    "language": {
+            "lengthMenu": "Mostrando _MENU_ records per page",
+            "zeroRecords": "No hay coincidencias",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "No hay aportaciones registradas",
+            "infoFiltered": "(filtered from _MAX_ total records)",
+            "search":"Buscar"
+    }});
+});
+</script>

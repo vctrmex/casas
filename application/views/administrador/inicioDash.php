@@ -67,7 +67,7 @@
 		<div class="card bordes-azules">
 			<div class="card-body">
 				<p>Viviendas registradas/de</p>
-				<span class="fs-3"><b><?php echo $total_viviendas; ?>/1400</b></span>
+				<span class="fs-3"><b><?php echo $total_viviendas; ?>/1002</b></span>
 			</div>
 		</div>
 	</div>
