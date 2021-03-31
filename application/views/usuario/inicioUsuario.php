@@ -133,14 +133,6 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="row">
-		<div class="col-12">
-			<h5>Redes Sociales</h5>
-			<a href="#" class="me-3 btn btn-primary"><i class="fa fa-facebook-f"></i> Facebook</a>
-			<a href="#" class="btn btn-primary"><i class="fa fa-twitter"></i> Twitter</a>
-		</div>
-	</div>
 </main>
 
 

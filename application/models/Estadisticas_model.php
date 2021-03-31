@@ -184,7 +184,7 @@ class Estadisticas_model extends CI_Model
     {
         $fecha = date("m");
         //$fecha = 2;
-        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_egreso' FROM `egresos` WHERE MONTH(fecha_egreso) = ".$fecha);
+        $sql = $this->db->query("SELECT SUM(cantidad_egreso) as 'total_egreso' FROM `egresos` WHERE MONTH(fecha_egreso) = '".$fecha."' AND status_egreso = 1");
         $ret = $sql->row();
         return $ret->total_egreso;
     }

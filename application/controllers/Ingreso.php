@@ -38,6 +38,7 @@ class Ingreso extends CI_Controller
       $data['usuarios'] = $this->Usuario_model->obtenerTodosLosUsuarios();
       $data['ubicaciones'] = $this->Usuario_model->obtenerTodasLasUbicaciones();
       $data['aportaciones'] = $this->Aportacion_model->getAllAportaciones();
+      $data['direcciones'] = $this->Usuario_model->obtenerTodasLasUbicacionesDireccciones();
       $data['cantidad_ingresos_al_mes'] = $this->Estadisticas_model->traerIngresosParaBalanceDash();
       $this->template->load('homeDashboard', 'administrador/ingresosView', $data);
     }

@@ -30,6 +30,7 @@
                                 <th>Email</th>
                                 <th>Rol</th>
                                 <th>Cel</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -55,7 +56,11 @@
                                     echo 'Usuario';
                                     break;
                               }?></td>
+                              
                                 <td> <?php echo $usuario['cel']; ?></td>
+                                <td>
+                              <a onclick="return confirm('Esta seguro de eliminar al usuario?')" href="<?php echo base_url('Usuario/eliminarUsuario/').$usuario['id']; ?>"><i data-feather="trash"></i> Borrar</a>
+                              </td>
                             </tr>
                             <?php }?>
                         </tbody>

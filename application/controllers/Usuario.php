@@ -82,7 +82,7 @@ class Usuario extends CI_Controller
 
             $this->Home_model->onlyGenerateQR($id_usuario);
 
-            $this->enviarCorreo($mail);
+            //$this->enviarCorreo($mail);
 
             $calixta = new CalixtaAPI();
             $calixta->enviaMensajeOL($cel, 'Su codigo de registro VQ.com es : ' . $pass, 'SMS', 125);
@@ -212,6 +212,7 @@ class Usuario extends CI_Controller
 
         $data['casadelvecino'] = array('calle' => $direccionsola);
         $data['casadelvecino2'] = $direcciondedb['piso'];
+        $data['direcciones'] = $this->Usuario_model->obtenerTodasLasUbicacionesDireccciones();
 
         $data['chat_whats'] = $this->Aportacion_model->traerChat($direcciondedb['calle']);
         //CARROS DEL USUARIO
@@ -370,6 +371,27 @@ class Usuario extends CI_Controller
 
         } catch (Exception $ex) {
             throw new Exception('Automobiles Controller : Error in edit function - ' . $ex);
+        }
+    }
+
+    public function eliminarUsuario($id)
+    {
+        try {
+            $usuario = $this->Usuario_model->get_usuarios($id);
+            // check if the automobiles exists before trying to delete it
+            if (isset($usuario['id'])) {
+                $params = array(
+                    'status' => 2
+                );
+                $this->Usuario_model->delete_usuario($id,$params);
+                $this->session->set_flashdata('alert_msg', '<div class="alert alert-success text-center">Aportacion Eliminada.</div>');
+                redirect('Usuario');
+            } else {
+                show_error('The Usuario you are trying to delete does not exist.');
+            }
+
+        } catch (Exception $ex) {
+            throw new Exception('aportacion Controller : Error in remove function - ' . $ex);
         }
     }
 }

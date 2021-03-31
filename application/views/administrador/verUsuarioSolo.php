@@ -154,9 +154,13 @@
                                 <td>
                                 <?php foreach ($ubicaciones as $ubicacion) {
                                     if($ubicacion['id_usuario'] == $aportacion['id_usuario']){
+                                        foreach ($direcciones as $direccion) {
+                                            if($direccion['id_direcciones'] == $ubicacion['calle']){
                                         ?>
-                                        <a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $aportacion['id_usuario'])); ?>"><?php echo $ubicacion['calle']; ?></a>
-                                <?php
+                                        <a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $aportacion['id_usuario'])); ?>"><?php echo $direccion['nombre_direcciones']; ?></a>
+                                        <?php
+                                        }
+                                        }
                                     }
                                 } ?>
                                 </td>
@@ -214,7 +218,8 @@
                 }
                 ?></td>
                                 <td class="moneda"><?php echo number_format($aportacion['cantidad'],2); ?></td>
-                                <td><?php echo $aportacion['fecharegistro']; ?></td>
+                                <td><?php $date = date_create($aportacion['fecharegistro']);
+                                            echo date_format($date, 'd-m-Y'); ?></td>
                                 <td>
 
                                 <?php foreach ($usuarios as $usuario) {

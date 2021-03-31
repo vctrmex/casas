@@ -70,7 +70,7 @@ class Usuario_model extends CI_model
     public function obtenerTodosLosUsuariosUsers()
     {
         try {
-            return $this->db->get_where('usuario', array('id_role' => 3))->result_array();
+            return $this->db->get_where('usuario', array('id_role' => 3,'status' => 1))->result_array();
         } catch (Exception $ex) {
             throw new Exception('Usuario model : Error in obtenerTodosLosUsuarios function - ' . $ex);
         }
@@ -103,12 +103,31 @@ class Usuario_model extends CI_model
         }
     }
 
+    public function get_usuarios($id)
+    {
+        try {
+            return $this->db->get_where('usuario', array('id' => $id))->row_array();
+        } catch (Exception $ex) {
+            throw new Exception('Usuario Model : Error in get_usuarios function - ' . $ex);
+        }
+    }
+
     public function delete_automobiles($id)
     {
         try {
             return $this->db->delete('automobiles', array('id' => $id));
         } catch (Exception $ex) {
             throw new Exception('Usuario model : Error in delete_automobiles function - ' . $ex);
+        }
+    }
+
+    public function delete_usuario($id,$params)
+    {
+        try {
+            $this->db->where('id', $id);
+            return $this->db->update('usuario', $params);
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in delete_usuario function - ' . $ex);
         }
     }
 

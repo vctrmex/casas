@@ -25,13 +25,13 @@
 									<option value=""> -- Seleccione una opción -- </option>
 									<?php foreach ($direcciones as $direccion) { ?>
 									<option value="<?php echo $direccion['id_direcciones']; ?>" <?php echo set_select('calle',$direccion['id_direcciones']); ?>>
-										<?php echo $direccion['nombre_direcciones']; ?>, Ext. <?php echo $direccion['numeroext_direcciones']; ?>, Int. <?php echo $direccion['numeroint_direcciones']; ?></option>
+										<?php echo $direccion['nombre_direcciones']; ?>, Ext. <?php echo $direccion['numeroint_direcciones']; ?>, Int. <?php echo $direccion['numeroext_direcciones']; ?></option>
 									<?php } ?>
 								</select>
 								<?php echo form_error('calle', '<div class="alert alert-danger mt-1">', '</div>'); ?>
 							</div>
 							<div class="mb-3">
-								<label for="exampleInputEmail1" class="form-label">Numero Ext</label>
+								<label for="exampleInputEmail1" class="form-label">Numero Int</label>
 								<input type="number" class="form-control" id="exampleInputEmail1"
 									aria-describedby="emailHelp" name="piso" value="<?php echo set_value('piso'); ?>">
 								<?php echo form_error('piso', '<div class="alert alert-danger mt-1">', '</div>'); ?>

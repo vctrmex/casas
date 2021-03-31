@@ -102,11 +102,15 @@
                             <tr>
                                 <td class="numeral"><?php echo sprintf('%06d', $aportacion['id']); ?></td>
                                 <td>
-                                <?php foreach ($ubicaciones as $ubicacion) {
-                                    if($ubicacion['id_usuario'] == $aportacion['id_usuario']){
+                                <?php $numeroint = ""; foreach ($ubicaciones as $ubicacion) {
+                                    if($ubicacion['id_usuario'] == $aportacion['id_usuario']){ $numeroint = $ubicacion['piso'];
+                                        foreach ($direcciones as $direccion) {
+                                            if($direccion['id_direcciones'] == $ubicacion['calle']){
                                         ?>
-                                        <a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $aportacion['id_usuario'])); ?>"><?php echo $ubicacion['calle']; ?></a>
-                                <?php
+                                        <a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $aportacion['id_usuario'])); ?>"><?php echo $direccion['nombre_direcciones'].' Ext.'.$direccion['numeroint_direcciones'].' Int.'.$numeroint; ?></a>
+                                        <?php
+                                        }
+                                        }
                                     }
                                 } ?>
                                 </td>
