@@ -3,7 +3,7 @@
 
 		<div class="row">
 			<div class="col-12">
-				<h1>Alta de Usuarios</h1>
+				<h1>Alta de Coche</h1>
 			</div>
 		</div>
 

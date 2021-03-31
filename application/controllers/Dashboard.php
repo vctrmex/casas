@@ -44,6 +44,8 @@ class Dashboard extends CI_Controller
       $data['total_vecinos_aportaron_15_dias'] = $this->Estadisticas_model->getCantidadVecinosQueAportaron15Dias();
       $data['total_viviendas'] = $this->Estadisticas_model->getCantidadViviendasRegistradas();
       $data['total_autos'] = $this->Estadisticas_model->getCantidadVehiculosRegistrados();
+
+      
       $this->template->load('homeDashboard', 'administrador/inicioDash', $data);
     }
 

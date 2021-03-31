@@ -82,21 +82,47 @@ class Usuario extends CI_Controller
 
             $this->Home_model->onlyGenerateQR($id_usuario);
 
-            echo '<script type="text/javascript"> alert("' . $pass . '"); </script>';
+            $this->enviarCorreo($mail);
 
-            if($id_rol == 3){
+            $calixta = new CalixtaAPI();
+            $calixta->enviaMensajeOL($cel, 'Su codigo de registro VQ.com es : ' . $pass, 'SMS', 125);
+            
+            //echo '<script type="text/javascript"> alert("' . $pass . '"); </script>';
+
+            if ($id_rol == 3) {
                 $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-success text-center">Usuario Agregado al sistema, agregue una dirección del mismo.</div>');
-                redirect('Usuario/agregarDireccion/'.$id_usuario);
-            }else{
+                redirect('Usuario/agregarDireccion/' . $id_usuario);
+            } else {
                 $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-success text-center">Usuario Agregado al sistema.</div>');
                 redirect('Usuario');
             }
-            //$calixta = new CalixtaAPI();
-            //$calixta->enviaMensajeOL($cel, 'Su codigo de registro VQ.com es : ' . $pass, 'SMS', 125);
+            //
+            //
             //$ret = 1;
-            
 
             //$this->load->view('administrador/alta.php');
+        }
+    }
+
+    public function enviarCorreo($correo)
+    {
+        $this->load->config('email');
+        $this->load->library('email');
+
+        $from = $this->config->item('smtp_user');
+        $to = $correo;
+        $subject = 'Villa Quietud App';
+
+        $this->email->set_newline("\r\n");
+        $this->email->from($from);
+        $this->email->to($to);
+        $this->email->subject($subject);
+        $this->email->message($this->load->view('template/emailT',true));
+
+        if ($this->email->send()) {
+            echo 'Email enviado...';
+        } else {
+            show_error($this->email->print_debugger());
         }
     }
 
@@ -112,13 +138,13 @@ class Usuario extends CI_Controller
         $this->form_validation->set_rules('cel2', 'No. Celular Secundario', 'required');
 
         if ($this->form_validation->run() == false) {
-            
+
             $data['title'] = 'Villa Quietud';
             $data['id_usuario'] = $id_vecino;
             $data['roles'] = $this->Usuario_model->obtenerTodosLosRoles();
             $data['vecino'] = $this->Aportacion_model->getDatosByIdVecino($id_vecino);
             $this->template->load('homeDashboard', 'usuario/editarUsuario', $data);
-        }else{
+        } else {
             $nombre = $this->input->post('nombre');
             $mail = $this->input->post('mail');
             $cel = $this->input->post('cel');
@@ -135,22 +161,18 @@ class Usuario extends CI_Controller
                 'nombre2' => $nombre2,
                 'cel2' => $cel2);
 
-            if($this->Usuario_model->actualizarUsuario($data,$id_vecino)){
+            if ($this->Usuario_model->actualizarUsuario($data, $id_vecino)) {
                 $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-success text-center">Usuario Actualizado.</div>');
-                redirect('Usuario/verUsuario/'.sprintf('%06d', $id_vecino));
+                redirect('Usuario/verUsuario/' . sprintf('%06d', $id_vecino));
             }
         }
 
-        
     }
 
     public function agregarDireccion($id_usuario)
     {
         $this->form_validation->set_rules('calle', 'calle', 'required');
         $this->form_validation->set_rules('piso', 'No. Ext', 'required');
-        $this->form_validation->set_rules('colonia', 'colonia', 'required');
-        $this->form_validation->set_rules('alcaldia', 'alcaldia', 'required');
-        $this->form_validation->set_rules('ciudad', 'ciudad', 'required');
 
         if ($this->form_validation->run() == false) {
             //INFLAR VISTA SIN NADA
@@ -163,16 +185,16 @@ class Usuario extends CI_Controller
                 'id' => null,
                 'calle' => $this->input->post('calle'),
                 'piso' => $this->input->post('piso'),
-                'colonia' => $this->input->post('colonia'),
-                'alcaldia' => $this->input->post('alcaldia'),
-                'ciudad' => $this->input->post('ciudad'),
-                'id_usuario' => $this->input->post('id_usuario')
+                'colonia' => null,
+                'alcaldia' => null,
+                'ciudad' => null,
+                'id_usuario' => $this->input->post('id_usuario'),
             );
 
-            if($this->Usuario_model->agregarDireccionWithUser($direccion)){
+            if ($this->Usuario_model->agregarDireccionWithUser($direccion)) {
                 $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-success text-center">Usuario Agregado al sistema.</div>');
                 redirect('Usuario');
-            }else{
+            } else {
                 $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-danger text-center">Dirección no agregada al sistema.</div>');
                 redirect('Usuario');
             }
@@ -188,7 +210,8 @@ class Usuario extends CI_Controller
 
         $direccionsola = $this->Aportacion_model->traerDireccionSola($direcciondedb['calle']);
 
-        $data['casadelvecino'] = array('calle' => $direccionsola.', '.$direcciondedb['colonia'].', '.$direcciondedb['alcaldia'].', '.$direcciondedb['ciudad']);
+        $data['casadelvecino'] = array('calle' => $direccionsola);
+        $data['casadelvecino2'] = $direcciondedb['piso'];
 
         $data['chat_whats'] = $this->Aportacion_model->traerChat($direcciondedb['calle']);
         //CARROS DEL USUARIO
@@ -266,7 +289,7 @@ class Usuario extends CI_Controller
             $this->template->load('homeDashboard', 'usuario/agregarCoche', $data);
         } else {
 
-            $coche = array(						
+            $coche = array(
                 'id' => null,
                 'fecharegistro' => date('Y-m-d'),
                 'marca' => $this->input->post('marca'),
@@ -274,16 +297,79 @@ class Usuario extends CI_Controller
                 'anio' => $this->input->post('anio'),
                 'color' => $this->input->post('color'),
                 'placas' => $this->input->post('placas'),
-                'id_usuario' => $this->input->post('id_usuario')
+                'id_usuario' => $this->input->post('id_usuario'),
             );
 
-            if($this->Usuario_model->agregarNuevoCoche($coche)){
+            if ($this->Usuario_model->agregarNuevoCoche($coche)) {
                 $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-success text-center">Coche Agregado al sistema.</div>');
-                redirect('Usuario/verAutomoviles/'.sprintf('%06d', $id_vecino));
-            }else{
+                redirect('Usuario/verAutomoviles/' . sprintf('%06d', $id_vecino));
+            } else {
                 $this->session->set_flashdata('alert_msg', '<br><div class="alert alert-danger text-center">Coche no agregada al sistema.</div>');
-                redirect('Usuario/verAutomoviles/'.sprintf('%06d', $id_vecino));
+                redirect('Usuario/verAutomoviles/' . sprintf('%06d', $id_vecino));
             }
+        }
+    }
+
+    public function eliminarCoche($id)
+    {
+        try {
+            $automobiles = $this->Usuario_model->get_automobiles($id);
+            // check if the automobiles exists before trying to delete it
+            if (isset($automobiles['id'])) {
+                $this->Usuario_model->delete_automobiles($id);
+                $this->session->set_flashdata('alert_msg', '<div class="alert alert-success text-center">Coche Eliminado.</div>');
+                redirect('Usuario/verAutomoviles/' . sprintf('%06d', $this->input->post('id_usuario')));
+            } else {
+                show_error('The automobiles you are trying to delete does not exist.');
+            }
+
+        } catch (Exception $ex) {
+            throw new Exception('Automobiles Controller : Error in remove function - ' . $ex);
+        }
+    }
+
+    public function editarCoche($id)
+    {
+        $id_vecino = ltrim($this->input->post('id_usuario'), '0');
+
+        try {
+            $data['automobiles'] = $this->Usuario_model->get_automobiles($id);
+
+            $this->load->library('upload');
+
+            $this->load->library('form_validation');
+
+            if (isset($data['automobiles']['id'])) {
+                $params = array(
+                    'marca' => $this->input->post('marca'),
+                    'modelo' => $this->input->post('modelo'),
+                    'anio' => $this->input->post('anio'),
+                    'color' => $this->input->post('color'),
+                    'placas' => $this->input->post('placas'),
+                    'id_usuario' => $this->input->post('id_usuario'),
+                );
+
+                $this->form_validation->set_rules('marca', 'marca', 'required');
+                $this->form_validation->set_rules('modelo', 'modelo', 'required');
+                $this->form_validation->set_rules('anio', 'anio', 'required');
+                $this->form_validation->set_rules('color', 'color', 'required');
+                $this->form_validation->set_rules('placas', 'placas', 'required');
+                if ($this->form_validation->run()) {
+                    $this->Usuario_model->update_automobiles($id, $params);
+                    $this->session->set_flashdata('alert_msg', '<div class="alert alert-success text-center">Carro Editado.</div>');
+                    redirect('Usuario/verAutomoviles/' . sprintf('%06d', $this->input->post('id_usuario')));
+                } else {
+                    $data['id_usuario'] = $id_vecino;
+                    $data['id_coche'] = $id;
+                    $data['title'] = 'Villa Quietud';
+                    $this->template->load('homeDashboard', 'usuario/editarCoche', $data);
+                }
+            } else {
+                show_error('The automobiles you are trying to edit does not exist.');
+            }
+
+        } catch (Exception $ex) {
+            throw new Exception('Automobiles Controller : Error in edit function - ' . $ex);
         }
     }
 }

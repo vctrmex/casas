@@ -30,7 +30,7 @@
 			<div class="card bordes-verdes">
 				<div class="card-body">
 					<p>Ingresos del mes</p>
-					<span class="fs-3"><b class="moneda">5,000.00</b></span>
+					<span class="fs-3"><b class="moneda"><?php echo number_format($cantidad_ingresos_al_mes,2); ?></b></span>
 				</div>
 			</div>
 		</div>

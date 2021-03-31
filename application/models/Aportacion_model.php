@@ -91,9 +91,9 @@ class Aportacion_model extends CI_Model
 
     public function traerDireccionSola($id_vecino)
     {
-        $sql = $this->db->query("SELECT * FROM `direcciones` WHERE id_direcciones = ".$id_vecino);
+        $sql = $this->db->query("SELECT id_direcciones,nombre_direcciones,numeroint_direcciones,numeroext_direcciones FROM `direcciones` WHERE id_direcciones = ".$id_vecino);
         $ret = $sql->row();
-        return $ret->nombre_direcciones.', '.$ret->numeroint_direcciones.', '.$ret->numeroext_direcciones.', '.$ret->chat_direccion;
+        return $ret->nombre_direcciones.', '.$ret->numeroint_direcciones.', '.$ret->numeroext_direcciones;
     }
 
     public function traerChat($id_vecino)
@@ -194,6 +194,34 @@ class Aportacion_model extends CI_Model
         );
         $this->db->where('id_egreso', $id_egreso);
         return $this->db->update('egresos', $data);
+    }
+
+    public function get_aportacion($id)
+    {
+        try {
+            return $this->db->get_where('aportaciones', array('id' => $id))->row_array();
+        } catch (Exception $ex) {
+            throw new Exception('Usuario Model : Error in get_aportacion function - ' . $ex);
+        }
+    }
+
+    public function delete_aportacion($id)
+    {
+        try {
+            return $this->db->delete('aportaciones', array('id' => $id));
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in delete_aportacion function - ' . $ex);
+        }
+    }
+
+    public function update_aportacion($id, $params)
+    {
+        try {
+            $this->db->where('id', $id);
+            return $this->db->update('aportaciones', $params);
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in update_aportacion function - ' . $ex);
+        }
     }
 
     // ------------------------------------------------------------------------

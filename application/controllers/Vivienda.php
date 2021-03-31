@@ -33,6 +33,8 @@ class Vivienda extends CI_Controller
         $data['title'] = 'Villa Quietud';
         $data['viviendas'] = $this->Aportacion_model->getAllViviendas();
         $data['usuarios'] = $this->Usuario_model->obtenerTodosLosUsuarios();
+        $data['ubicaciones'] = $this->Usuario_model->obtenerTodasLasUbicaciones();
+        $data['direcciones'] = $this->Usuario_model->obtenerTodasLasUbicacionesDireccciones();
         $this->template->load('homeDashboard', 'administrador/verViviendas', $data);
     }
 

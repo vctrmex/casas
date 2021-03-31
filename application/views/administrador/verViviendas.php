@@ -23,6 +23,7 @@
                                 <th>Vecino</th>
                                 <th>Dirección</th>
                                 <th>No. Ext</th>
+                                <th>No. Int</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,8 +40,22 @@
                                 } ?>
                                 
                                 </td>
-                                <td><a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $vivienda['id_usuario'])); ?>"><?php echo $vivienda['calle']; ?></a></td>
+                                <td>
+                                <?php $noint = ""; foreach ($ubicaciones as $ubicacion) {
+                                    if($ubicacion['id_usuario'] == $vivienda['id_usuario']){
+                                        foreach ($direcciones as $direccion) {
+                                            if($direccion['id_direcciones'] == $ubicacion['calle']){ $noint = $direccion['numeroint_direcciones'];
+                                        ?>
+                                        <a href="<?php echo base_url('Usuario/verUsuario/'.sprintf('%06d', $vivienda['id_usuario'])); ?>"><?php echo $direccion['nombre_direcciones']; ?></a>
+                                        <?php
+                                        }
+                                        }
+                                    }
+                                } ?>
+                                </td>
                                 <td> #<?php echo $vivienda['piso']; ?></td>
+
+                                <td> #<?php echo $noint; ?></td>
                             </tr>
                             <?php }?>
                         </tbody>

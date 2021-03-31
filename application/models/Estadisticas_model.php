@@ -138,6 +138,32 @@ class Estadisticas_model extends CI_Model
         return $query->result_array();
     }
 
+    public function traerEgresosParaBalanceDash()
+    {
+        $total = 0;
+        $sql = "SELECT * FROM `egresos` WHERE MONTH(fecha_egreso) = ".date('m')." AND status_egreso = 1";
+        $query = $this->db->query($sql);
+        
+        foreach ($query->result_array() as $egreso) {
+            $total = $total + $egreso['cantidad_egreso'];
+        }
+
+        return $total;
+    }
+
+    public function traerIngresosParaBalanceDash()
+    {
+        $total = 0;
+        $sql = "SELECT * FROM `aportaciones` WHERE MONTH(fecharegistro) = ".date('m');
+        $query = $this->db->query($sql);
+
+        foreach ($query->result_array() as $ingreso) {
+            $total = $total + $ingreso['cantidad'];
+        }
+
+        return $total;
+    }
+
     public function traerEgresosParaBalance()
     {
         $sql = "SELECT * FROM `egresos` WHERE MONTH(fecha_egreso) = ".date('m')." AND status_egreso = 1";

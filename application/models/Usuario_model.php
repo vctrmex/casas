@@ -17,7 +17,7 @@ class Usuario_model extends CI_model
         return $insert_id;
     }
 
-    public function actualizarUsuario($data,$id_cliente)
+    public function actualizarUsuario($data, $id_cliente)
     {
         $this->db->where('id', $id_cliente);
         return $this->db->update('usuario', $data);
@@ -91,6 +91,34 @@ class Usuario_model extends CI_model
             return $this->db->get('direccion')->result_array();
         } catch (Exception $ex) {
             throw new Exception('Usuario model : Error in obtenerTodasLasUbicaciones function - ' . $ex);
+        }
+    }
+
+    public function get_automobiles($id)
+    {
+        try {
+            return $this->db->get_where('automobiles', array('id' => $id))->row_array();
+        } catch (Exception $ex) {
+            throw new Exception('Usuario Model : Error in get_automobiles function - ' . $ex);
+        }
+    }
+
+    public function delete_automobiles($id)
+    {
+        try {
+            return $this->db->delete('automobiles', array('id' => $id));
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in delete_automobiles function - ' . $ex);
+        }
+    }
+
+    public function update_automobiles($id, $params)
+    {
+        try {
+            $this->db->where('id', $id);
+            return $this->db->update('automobiles', $params);
+        } catch (Exception $ex) {
+            throw new Exception('Usuario model : Error in update_automobiles function - ' . $ex);
         }
     }
 

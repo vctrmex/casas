@@ -36,7 +36,7 @@
 		<div class="card h-100">
 			<div class="card-body">
 				<h3>Domicilio</h3>
-				<p><b><?php echo $casadelvecino['calle']; ?></b></p>
+				<p><b><?php echo $casadelvecino['calle']; ?>, No. Ext. <?php echo $casadelvecino2; ?></b></p>
 
 				<h3>Chat de WhatsApp</h3>
 				<p><b><?php echo $chat_whats; ?></b></p>

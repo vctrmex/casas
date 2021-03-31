@@ -34,6 +34,7 @@ class Egreso extends CI_Controller
         $data['egreso_al_dia'] = $this->Estadisticas_model->getEgresosDelDiaActual();
         $data['egreso_15_dias'] = $this->Estadisticas_model->getEgresosUltimos15Dias();
         $data['egresos'] = $this->Aportacion_model->getEgresosActivos();
+        $data['cantidad_egresos_al_mes'] = $this->Estadisticas_model->traerEgresosParaBalanceDash();
         $this->template->load('homeDashboard', 'administrador/egresosView', $data);
     }
 

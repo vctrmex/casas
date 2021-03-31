@@ -25,7 +25,7 @@
 									<option value=""> -- Seleccione una opción -- </option>
 									<?php foreach ($direcciones as $direccion) { ?>
 									<option value="<?php echo $direccion['id_direcciones']; ?>" <?php echo set_select('calle',$direccion['id_direcciones']); ?>>
-										<?php echo $direccion['nombre_direcciones']; ?>, Int. <?php echo $direccion['numeroint_direcciones']; ?>, Ext. <?php echo $direccion['numeroext_direcciones']; ?></option>
+										<?php echo $direccion['nombre_direcciones']; ?>, Ext. <?php echo $direccion['numeroext_direcciones']; ?>, Int. <?php echo $direccion['numeroint_direcciones']; ?></option>
 									<?php } ?>
 								</select>
 								<?php echo form_error('calle', '<div class="alert alert-danger mt-1">', '</div>'); ?>
@@ -35,30 +35,6 @@
 								<input type="number" class="form-control" id="exampleInputEmail1"
 									aria-describedby="emailHelp" name="piso" value="<?php echo set_value('piso'); ?>">
 								<?php echo form_error('piso', '<div class="alert alert-danger mt-1">', '</div>'); ?>
-							</div>
-
-							<div class="mb-3">
-								<label for="exampleInputEmail1" class="form-label">Colonia</label>
-								<input type="text" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" name="colonia"
-									value="<?php echo set_value('colonia'); ?>">
-								<?php echo form_error('colonia', '<div class="alert alert-danger mt-1">', '</div>'); ?>
-							</div>
-
-							<div class="mb-3">
-								<label for="exampleInputEmail1" class="form-label">Alcaldia</label>
-								<input type="text" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" name="alcaldia"
-									value="<?php echo set_value('alcaldia'); ?>">
-								<?php echo form_error('alcaldia', '<div class="alert alert-danger mt-1">', '</div>'); ?>
-							</div>
-
-							<div class="mb-3">
-								<label for="exampleInputEmail1" class="form-label">Ciudad</label>
-								<input type="text" class="form-control" id="exampleInputEmail1"
-									aria-describedby="emailHelp" name="ciudad"
-									value="<?php echo set_value('ciudad'); ?>">
-								<?php echo form_error('ciudad', '<div class="alert alert-danger mt-1">', '</div>'); ?>
 							</div>
 
 							<input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">

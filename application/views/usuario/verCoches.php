@@ -28,10 +28,10 @@
                                 <th>id</th>
                                 <th>marca</th>
                                 <th>modelo</th>
-                                <th>anio</th>
+                                <th>Año</th>
                                 <th>color</th>
                                 <th>placas</th>
-                                <th></th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +44,17 @@
                                 <td> <?php echo $coche['anio']; ?></td>
                                 <td> <?php echo $coche['color']; ?></td>
                                 <td> <?php echo $coche['placas']; ?></td>
+                                <td>
+                                <form method="post" action="<?php echo site_url('usuario/editarCoche/'.$coche['id']); ?>">
+                                    <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
+                                    <button type="submit" class="btn btn-info btn-xs m-2">Editar</button>
+                                </form>
+
+                                <form method="post" action="<?php echo site_url('usuario/eliminarCoche/'.$coche['id']); ?>">
+                                    <input type="hidden" name="id_usuario" value="<?php echo $id_usuario; ?>">
+                                    <button onclick="return confirm('Esta seguro de eliminar el coche?')" type="submit" class="btn btn-danger btn-xs">Eliminar</button>
+                                </form>
+                                </td>
                             </tr>
                             <?php }?>
                         </tbody>
